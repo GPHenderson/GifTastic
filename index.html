@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Giftastic</title>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1 min.js">
+    </script>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <div class= 'container-fluid'>
+
+        <div class="row">
+            <div id="btnSection" class = "col-md-12"></div>
+        </div>
+        <div class= "row">
+            <div class= "gitIMg col-md-12"></div>
+        </div>
+       <form class= "col-md-2">
+           Add a topic 
+           <input type = "text" id ="userInput"></input>
+           <input type= "submit-btn" class = "btn-info" id= "submit-btn"></input>
+       </form>
+       <p class= "demo"></p>
+       </div>
+
+</head>
+<body>
+
+    
+    <!-- var APIKey =   "j4w8TJsX0yK5oLxGN0qNmBmibsqde85U"; -->
+    <script type = "text/javascript">
+    $(document).ready(function(){
+var topics = ['Basketball', 'Baseball', 'Hockey', 'Golf', 'Rugby',
+               'Football', 'Soccer', 'Food', 'Exercise', 'Running',
+               'Dogs', 'Cats', 'Birds', 'Lebron James', 'Michael Jordan',
+               'Allen Iverson', 'Comedy', 'Mike Epps', 'Kevin Hart', 'Bearnie Mac', 
+               'Martin Lawrence', 'Eddie Murphy', 'Richard Pryor', 'Movies',
+               'Biking', 'Hiking', 'Skating', 'Surfing', 'Technology'];
+
+var createBtn = function (){
+
+    $('#btn-section').empty ();
+
+    for (var i =0; i<topics.length; i++){
+        var newBtn = $('<button class=btn-success>');
+
+        newBtn.attr('data-type',);
+
+        newBtn.text(topics[i]);
+        
+        newBtn.attr('class', 'gif btn-success');
+        $('#btn-section').append(newBtn)
+
+            console.log (i);
+    }
+}
+var submit = function (){
+$('#submit-btn').on('click', function (event){
+event.preventDefault();
+
+   var inputVal= $('#userInput').val();
+   topics.push(userInputVal);
+   createBtn();
+console.log (inputVal);
+console.log (topics);
+});
+}
+var displayGif = function (){
+var btnVal= $(this).data(type);
+console.log(btnVal);
+}
+createBtn();
+submit();
+$(document).on ('click', '.gif', displayGif)
+    });
+    </script>
+</body>
+</html>
