@@ -38,8 +38,8 @@ $(document).ready(function() {
 
              var rating = response.data[j].rating;
              console.log(response);
-             var pRating = $("<p>").text("Rating: " + rating);
-             displayDiv.append(pRating)
+            //  var pRating = $("<p>").text("Rating: " + rating);
+            //  displayDiv.append(pRating)
 
              $("#displayImages").append(displayDiv);
          }
