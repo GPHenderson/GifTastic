@@ -22,7 +22,7 @@
             <div id="btn-section" class = "col-md-12"></div>
         </div>
         <div class= "row">
-            <div class= "gitIMg col-md-12"></div>
+            <div class= "gitImg col-md-12"></div>
         </div>
        <form class= "col-md-2">
            Add a topic 
@@ -57,7 +57,7 @@ var createBtn = function (){
     $('#btn-section').empty ();
 
     for (var i =0; i<topics.length; i++){
-        var newBtn = $('<button class=btn-success>');
+        var newBtn = $('<button value='+topics[i]+' class=btn-success>');
 
         newBtn.attr('data-type');
 
@@ -66,37 +66,68 @@ var createBtn = function (){
         newBtn.attr('class', 'gif btn-success');
         $('#btn-section').append(newBtn);
         newBtn.bind ("click", function(){
-            console.log ($("this").attr("value"))
+            alert(this.id);
+            displayGif(this.value);
+
+            console.log (this.value)
         });
 
             console.log (i);
     }
 }
 var submit = function (){
-$('#submit-btn').on('click', function (event){
-event.preventDefault();
+    $('#submit-btn').on('click', function (event){
+    event.preventDefault();
 
-   var inputVal= $('#userInput').val();
-   topics.push(userInputVal);
-   createBtn();
-console.log (inputVal);
-console.log (topics);
 
-$.ajax({
-  url: queryURL,
-  method: "GET"
-}).then(function(response) {
-  console.log(response);
-});
-});
-}
+    var inputVal= $('#userInput').val();
+    topics.push(userInputVal);
+    createBtn();
+    console.log (inputVal);
+    console.log (topics);
 
+    // $.ajax({
+    //   url: queryURL,
+    //   method: "GET"
+    // }).then(function(response) {
+    //   console.log(response);
+    // });
+     });
+ }
+    
 var displayGif = function (obj){
 console.log ("the object is: " +obj)
- var btnVal= $(obj).data();
+ var btnVal= obj;
 
- console.log(btnVal);
+ console.log("tttttt "+btnVal);
+  
+ test = queryURL + "&tag="+obj;
+ $.ajax({
+      url: test,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+    })
+
+
+    .then(function(response) {
+
+// Saving the image_original_url property
+var imageUrl = response.data.image_original_url;
+
+// Creating and storing an image tag
+var giphImage = $("<img>");
+
+// Setting the catImage src attribute to imageUrl 
+giphImage.attr("src", imageUrl);
+giphImage.attr("alt", "giph image");
+
+// Prepending the catImage to the images div
+$("#images").prepend(catImage);
+});
 }
+
+
 createBtn();
 submit();
 $(".btn-success").on ('click', '.gif', displayGif)
