@@ -11,13 +11,15 @@
     </script>
     
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <div class= 'container-fluid'>
 
         <div class="row">
-            <div id="btnSection" class = "col-md-12"></div>
+            <div id="btn-section" class = "col-md-12"></div>
         </div>
         <div class= "row">
             <div class= "gitIMg col-md-12"></div>
@@ -37,7 +39,12 @@
     <!-- var APIKey =   "j4w8TJsX0yK5oLxGN0qNmBmibsqde85U"; -->
     <script type = "text/javascript">
     $(document).ready(function(){
-var topics = ['Basketball', 'Baseball', 'Hockey', 'Golf', 'Rugby',
+        var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=j4w8TJsX0yK5oLxGN0qNmBmibsqde85U";
+
+
+
+        
+        var topics = ['Basketball', 'Baseball', 'Hockey', 'Golf', 'Rugby',
                'Football', 'Soccer', 'Food', 'Exercise', 'Running',
                'Dogs', 'Cats', 'Birds', 'Lebron James', 'Michael Jordan',
                'Allen Iverson', 'Comedy', 'Mike Epps', 'Kevin Hart', 'Bearnie Mac', 
@@ -46,17 +53,21 @@ var topics = ['Basketball', 'Baseball', 'Hockey', 'Golf', 'Rugby',
 
 var createBtn = function (){
 
+
     $('#btn-section').empty ();
 
     for (var i =0; i<topics.length; i++){
         var newBtn = $('<button class=btn-success>');
 
-        newBtn.attr('data-type',);
+        newBtn.attr('data-type');
 
         newBtn.text(topics[i]);
         
         newBtn.attr('class', 'gif btn-success');
-        $('#btn-section').append(newBtn)
+        $('#btn-section').append(newBtn);
+        newBtn.bind ("click", function(){
+            console.log ($("this").attr("value"))
+        });
 
             console.log (i);
     }
@@ -70,15 +81,25 @@ event.preventDefault();
    createBtn();
 console.log (inputVal);
 console.log (topics);
+
+$.ajax({
+  url: queryURL,
+  method: "GET"
+}).then(function(response) {
+  console.log(response);
+});
 });
 }
-var displayGif = function (){
-var btnVal= $(this).data(type);
-console.log(btnVal);
+
+var displayGif = function (obj){
+console.log ("the object is: " +obj)
+ var btnVal= $(obj).data();
+
+ console.log(btnVal);
 }
 createBtn();
 submit();
-$(document).on ('click', '.gif', displayGif)
+$(".btn-success").on ('click', '.gif', displayGif)
     });
     </script>
 </body>
