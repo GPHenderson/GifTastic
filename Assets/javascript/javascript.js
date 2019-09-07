@@ -14,7 +14,8 @@ $(document).ready(function() {
      $("#displayImages").empty();
      var input = $(this).attr("topic");
 
-     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=dc6zaTOxFJmzC&limit=10";
+     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=j4w8TJsX0yK5oLxGN0qNmBmibsqde85U&limit=10";
+
      console.log(queryURL);
 
      $.ajax({
@@ -29,17 +30,9 @@ $(document).ready(function() {
              displayDiv.addClass("holder");
 
              var image = $("<img>");
-             image.attr("src", response.data[j].images.original_still.url);
-             image.attr("data-still", response.data[j].images.original_still.url);
-             image.attr("data-animate", response.data[j].images.original.url);
-             image.attr("data-state", "still");
-             image.attr("class", "gif");
+             image.attr("src", response.data[j].images.original.url);
+      
              displayDiv.append(image);
-
-             var rating = response.data[j].rating;
-             console.log(response);
-            //  var pRating = $("<p>").text("Rating: " + rating);
-            //  displayDiv.append(pRating)
 
              $("#displayImages").append(displayDiv);
          }
