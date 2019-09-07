@@ -60,9 +60,13 @@ $(document).ready(function() {
  $("#submitPress").on("click", function(event) {
      event.preventDefault();
      var newTopic = $("#userInput").val().trim();
+     if (newTopic && /^[a-zA-Z]+$/.test(newTopic)){
      topics.push(newTopic);
+     } else{
+         alert ("Must Enter Valid Topic!")
+     }
      console.log(topics);
-     $("#netflixInput").val('');
+     $("#userInput").val('');
      renderButtons();
  });
 
